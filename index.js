@@ -3,7 +3,7 @@
 // ***************************************************************************
 
 let usersArray = require('./data')
-
+/*
 const getFirstNames = arr => {
   const userFirstNames = [];
   for (let user of arr) {
@@ -30,6 +30,7 @@ const getFullNames = arr => {
 };
 
 getFullNames(usersArray);
+*/
 // expected output:
 // [ 'Kirby Doyle', 'Tracie May', 'Kendra Hines', 'Kinney Howard',
 //   'Howard Gilmore', 'Rachelle Schneider', 'Lizzie Alford' ]
@@ -37,12 +38,23 @@ getFullNames(usersArray);
 // ***************************************************************************
 // Iteration 3 - ES6 destructuring , for of loop, object literal
 // ***************************************************************************
-
+/*
 const getUsersCreditDetails = arr => {
-  // Your code goes here ...
+  let usersCreditDetails = []
+
+  for (let user of arr) {
+    let {firstName = {firstName}, lastName = {lastName}, balance = {balance}} = user
+    let score = {
+      firstName,
+      lastName,
+      balance
+    }
+    usersCreditDetails.push(score)
+  }
+  console.log(usersCreditDetails)
 };
 
-getUsersCreditDetails(usersArray);
+getUsersCreditDetails(usersArray);*/
 // expected output:
 // [ { firstName: 'Kirby', lastName: 'Doyle', balance: '$3,570.06' },
 // { firstName: 'Tracie', lastName: 'May', balance: '$1,547.73' },
@@ -57,16 +69,17 @@ getUsersCreditDetails(usersArray);
 // ***************************************************************************
 
 const genderView = users => {
-  // Your code goes here ...
-};
+  let femaleUsers = [];
+  let maleUsers = [];
+  femaleUsers = users.filter(e => e.gender == 'female')
+  maleUsers = users.filter(e => e.gender == 'male')
+  femaleUsers = femaleUsers.map(e => `${e.firstName} ${e.lastName}`) ;
+  maleUsers = maleUsers.map(e => `${e.firstName} ${e.lastName}`) ;
+  let gender = {femaleUsers, maleUsers}
+  return gender
+  };
 
 genderView(usersArray);
-// expected output:
-// {
-//    femaleUsers: [ 'Tracie May', 'Kendra Hines', 'Rachelle Schneider', 'Lizzie Alford' ],
-//    maleUsers: [ 'Kirby Doyle', 'Kinney Howard', 'Howard Gilmore' ]
-// }
-
 // ***************************************************************************
 // Bonus - Iteration 5
 // ***************************************************************************
@@ -74,7 +87,12 @@ genderView(usersArray);
 const data = genderView(usersArray);
 
 const genderCount = data => {
-  // Your code goes here ...
+  
+  const {femaleUsers, maleUsers} = data
+  let femaleLength = femaleUsers.length 
+  let maleLength = maleUsers.length
+  console.log(`Female: ${femaleLength} - Male: ${maleLength}`)
+  return `Female: ${femaleLength} - Male: ${maleLength}`
 };
 
 genderCount(data);
