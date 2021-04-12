@@ -2,11 +2,14 @@
 // Iteration 1 - `for...of` loop
 // ***************************************************************************
 
+let usersArray = require('./data')
+
 const getFirstNames = arr => {
   const userFirstNames = [];
   for (let user of arr) {
-    // Your code goes here ...
+    userFirstNames.push(user.firstName)
   }
+  console.log(userFirstNames)
 };
 
 getFirstNames(usersArray);
